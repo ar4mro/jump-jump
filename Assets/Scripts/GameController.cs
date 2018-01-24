@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour {
 	public enum GameState {Idle, Playing};
 	public GameState actualGameState = GameState.Idle;
 
+	public GameObject player; 
+
 	private float finalSpeed; 
 
 	// Use this for initialization
@@ -32,6 +34,7 @@ public class GameController : MonoBehaviour {
 
 			// Hides the menu and desactives all its elements 
 			uiMenu.SetActive(false);
+			player.SendMessage("UpdateState", "PlayerRun");
 		} else if (actualGameState == GameState.Playing) {
 			Parallax ();
 		}

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\PlayerController.cs" />
      <None Include="Assets\Audio\License.txt" />
  <Reference Include="Facebook.Unity.Settings">
  <HintPath>/Users/alvaro/Desktop/Learn/My_Unity/Proyects/Jumping Guy/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
