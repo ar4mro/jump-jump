@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-	// Limits the value in te UI 
-	[Range (0f, 0.20f)]
+	// GAME WORLD 
+	[Range (0f, 0.20f)] // Limits the value in te UI 
 	public float parallaxSpeed = 0.02f;
-
 	public RawImage background;
 	public RawImage platform; 
+	public GameObject uiMenu; 
+
+	// GAME STATES
+	public enum GameState {Idle, Playing};
+	public GameState actualGameState = GameState.Idle;
 
 	private float finalSpeed; 
 
@@ -21,10 +25,24 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		// When the game starts 
+		if (actualGameState == GameState.Idle && (Input.GetKeyDown("up") || Input.GetMouseButtonDown(0))) {
+			actualGameState = GameState.Playing;
+
+			// Hides the menu and desactives all its elements 
+			uiMenu.SetActive(false);
+		} else if (actualGameState == GameState.Playing) {
+			Parallax ();
+		}
+	}
+
+	// Performs the background and terrain effect 
+	void Parallax() {
 		// Delta time multiplication is needed due different resolutions 
 		finalSpeed = parallaxSpeed * Time.deltaTime;
 
-		// Updates the velocity of the parallax object 
+		// Updates the velocity of the parallax objects
 		background.uvRect = new Rect(background.uvRect.x + finalSpeed, 0f, 1f, 1f);
 		platform.uvRect = new Rect(platform.uvRect.x + finalSpeed * 4, 0f, 1f, 1f);
 	}
