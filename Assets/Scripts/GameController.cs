@@ -13,10 +13,11 @@ public class GameController : MonoBehaviour {
 	public GameObject uiMenu; 
 
 	// GAME STATES
-	public enum GameState {Idle, Playing};
+	public enum GameState {Idle, Playing, Ended};
 	public GameState actualGameState = GameState.Idle;
 
 	public GameObject player; 
+	public GameObject enemyGenerator; 
 
 	private float finalSpeed; 
 
@@ -35,8 +36,11 @@ public class GameController : MonoBehaviour {
 			// Hides the menu and desactives all its elements 
 			uiMenu.SetActive(false);
 			player.SendMessage("UpdateState", "PlayerRun");
+			enemyGenerator.SendMessage("StartGenerator");
 		} else if (actualGameState == GameState.Playing) {
 			Parallax ();
+		} else if (actualGameState == GameState.Ended) {
+			
 		}
 	}
 

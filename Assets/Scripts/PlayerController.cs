@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+	public GameObject game;
+	public GameObject enemyGenerator; 
+
 	private Animator animatorComponent;
+	private bool gamePlaying; 
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +17,8 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown ("up") || Input.GetMouseButtonDown (0)) {
+		gamePlaying = game.GetComponent<GameController>().actualGameState == GameController.GameState.Playing;
+		if (gamePlaying && (Input.GetKeyDown ("up") || Input.GetMouseButtonDown (0))) {
 			UpdateState("PlayerJump");
 		}
 	}
@@ -21,6 +26,15 @@ public class PlayerController : MonoBehaviour {
 	public void UpdateState(string state = null) {
 		if( state != null) {
 			animatorComponent.Play(state);
+		}
+	}
+
+	// This function is called whenever is a 2d collision 
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.tag == "Enemy") {
+			UpdateState("PlayerDie");
+			game.GetComponent<GameController>().actualGameState = GameController.GameState.Ended;
+			enemyGenerator.SendMessage("CancelGenerator", true);
 		}
 	}
 }
