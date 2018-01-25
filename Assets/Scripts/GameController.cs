@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -13,7 +14,7 @@ public class GameController : MonoBehaviour {
 	public GameObject uiMenu; 
 
 	// GAME STATES
-	public enum GameState {Idle, Playing, Ended};
+	public enum GameState {Idle, Playing, Ended, Ready};
 	public GameState actualGameState = GameState.Idle;
 
 	public GameObject player; 
@@ -29,8 +30,10 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		bool userAction = Input.GetKeyDown("up") || Input.GetMouseButtonDown(0) ;
+
 		// When the game starts 
-		if (actualGameState == GameState.Idle && (Input.GetKeyDown("up") || Input.GetMouseButtonDown(0))) {
+		if (actualGameState == GameState.Idle && userAction) {
 			actualGameState = GameState.Playing;
 
 			// Hides the menu and desactives all its elements 
@@ -39,8 +42,10 @@ public class GameController : MonoBehaviour {
 			enemyGenerator.SendMessage("StartGenerator");
 		} else if (actualGameState == GameState.Playing) {
 			Parallax ();
-		} else if (actualGameState == GameState.Ended) {
-			
+		} else if (actualGameState == GameState.Ready) {
+			if (userAction) {
+				RestartGame();
+			}
 		}
 	}
 
@@ -52,5 +57,9 @@ public class GameController : MonoBehaviour {
 		// Updates the velocity of the parallax objects
 		background.uvRect = new Rect(background.uvRect.x + finalSpeed, 0f, 1f, 1f);
 		platform.uvRect = new Rect(platform.uvRect.x + finalSpeed * 4, 0f, 1f, 1f);
+	}
+
+	public void RestartGame() {
+		SceneManager.LoadScene("Main"); 
 	}
 }

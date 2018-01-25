@@ -37,4 +37,9 @@ public class PlayerController : MonoBehaviour {
 			enemyGenerator.SendMessage("CancelGenerator", true);
 		}
 	}
+
+	// To prevent game restart too fast at clicking
+	void GameReady() {
+		game.GetComponent<GameController>().actualGameState = GameController.GameState.Ready;
+	}
 }
