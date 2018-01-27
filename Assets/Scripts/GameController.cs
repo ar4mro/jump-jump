@@ -20,11 +20,13 @@ public class GameController : MonoBehaviour {
 	public GameObject player; 
 	public GameObject enemyGenerator; 
 
+	private AudioSource musicPlayer;
+
 	private float finalSpeed; 
 
 	// Use this for initialization
 	void Start () {
-		
+		musicPlayer = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -40,6 +42,7 @@ public class GameController : MonoBehaviour {
 			uiMenu.SetActive(false);
 			player.SendMessage("UpdateState", "PlayerRun");
 			enemyGenerator.SendMessage("StartGenerator");
+			musicPlayer.Play();
 		} else if (actualGameState == GameState.Playing) {
 			Parallax ();
 		} else if (actualGameState == GameState.Ready) {
