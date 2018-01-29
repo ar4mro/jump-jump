@@ -20,6 +20,10 @@ public class GameController : MonoBehaviour {
 	public GameObject player; 
 	public GameObject enemyGenerator; 
 
+	public float scaleTime = 6f; // Every n seconds 
+	public float scaleIncrement = .25f;
+
+
 	private AudioSource musicPlayer;
 
 	private float finalSpeed; 
@@ -43,6 +47,7 @@ public class GameController : MonoBehaviour {
 			player.SendMessage("UpdateState", "PlayerRun");
 			enemyGenerator.SendMessage("StartGenerator");
 			musicPlayer.Play();
+			InvokeRepeating("GameTimeScale", scaleTime, scaleTime);
 		} else if (actualGameState == GameState.Playing) {
 			Parallax ();
 		} else if (actualGameState == GameState.Ready) {
@@ -63,6 +68,17 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void RestartGame() {
+		ResetTimeScale();
 		SceneManager.LoadScene("Main"); 
+	}
+
+	void GameTimeScale() {
+		Time.timeScale += scaleIncrement;
+	}
+
+	public void ResetTimeScale(float newTimeScale = 1f) {
+		CancelInvoke("GameTimeScale");
+		Time.timeScale = newTimeScale; 
+		Debug.Log("Scale time reset " + Time.timeScale.ToString());
 	}
 }
