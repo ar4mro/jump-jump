@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject enemyGenerator; // Creates the enemies from a prefab 
 	public AudioClip jumpClip;
 	public AudioClip dieClip;
+	public ParticleSystem dust;
 
 	private Animator animatorComponent; // Controls the sprite animations 
 	private AudioSource audioPlayer; // Reproduces the clips 
@@ -61,11 +62,24 @@ public class PlayerController : MonoBehaviour {
 			game.GetComponent<AudioSource>().Stop();
 			audioPlayer.clip = dieClip;
 			audioPlayer.Play();
+
+			// Desactivate the particle system 
+			DustStop();
 		}
 	}
 
 	// To prevent game restart too fast at clicking
 	void GameReady() {
 		game.GetComponent<GameController>().actualGameState = GameController.GameState.Ready;
+	}
+
+	// Activates the particle system animation 
+	void DustPlay() {
+		dust.Play();
+	}
+
+	// Desactivate the particle system animation 
+	void DustStop() {
+		dust.Stop();
 	}
 }

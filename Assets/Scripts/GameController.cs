@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour {
 			// Hides the menu and desactives all its elements 
 			uiMenu.SetActive(false);
 			player.SendMessage("UpdateState", "PlayerRun");
+			player.SendMessage("DustPlay");
 			enemyGenerator.SendMessage("StartGenerator");
 			musicPlayer.Play();
 			InvokeRepeating("GameTimeScale", scaleTime, scaleTime);
