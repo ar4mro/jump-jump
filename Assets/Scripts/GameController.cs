@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour {
 	public RawImage background;
 	public RawImage platform; 
 	public GameObject uiMenu; 
+	public GameObject uiScore;
+	public Text pointsText; 
 
 	// GAME STATES
 	public enum GameState {Idle, Playing, Ended, Ready};
@@ -25,6 +27,7 @@ public class GameController : MonoBehaviour {
 
 
 	private AudioSource musicPlayer;
+	private int points = 0;
 
 	private float finalSpeed; 
 
@@ -44,6 +47,7 @@ public class GameController : MonoBehaviour {
 
 			// Hides the menu and desactives all its elements 
 			uiMenu.SetActive(false);
+			uiScore.SetActive(true);
 			player.SendMessage("UpdateState", "PlayerRun");
 			player.SendMessage("DustPlay");
 			enemyGenerator.SendMessage("StartGenerator");
@@ -81,5 +85,10 @@ public class GameController : MonoBehaviour {
 		CancelInvoke("GameTimeScale");
 		Time.timeScale = newTimeScale; 
 		Debug.Log("Scale time reset " + Time.timeScale.ToString());
+	}
+
+	public void IncreasePoints() {
+		points++;
+		pointsText.text = points.ToString();
 	}
 }

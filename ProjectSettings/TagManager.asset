@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Destroyer
   - Enemy
+  - Point
   layers:
   - Default
   - TransparentFX
