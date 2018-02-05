@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip jumpClip;
 	public AudioClip dieClip;
 	public AudioClip pointClip;
-	public ParticleSystem dust;
+	public ParticleSystem dust; // This particle is the dust of the ground 
 
 	private Animator animatorComponent; // Controls the sprite animations 
 	private AudioSource audioPlayer; // Reproduces the clips 
