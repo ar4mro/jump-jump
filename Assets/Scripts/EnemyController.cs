@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour {
 
 	public float velocity = 2f;
 
-	private Rigidbody2D rb2d; 
+	private Rigidbody2D rb2d; // A boby must exists to enable collides 
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +19,9 @@ public class EnemyController : MonoBehaviour {
 		
 	}
 
+	// Whenever and object collides with this object
 	void OnTriggerEnter2D(Collider2D other){
+		// Tags are used to identify which object 
 		if (other.gameObject.tag == "Destroyer") {
 			Destroy(gameObject);
 		}

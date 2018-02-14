@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyGeneratorController : MonoBehaviour {
 	
 	public GameObject enemyPrefab; // The actual object 
-	public float generatorTimer = 1.75f; // The velocity the objects will be created 
+	public float generatorTimer = 1.75f; // The velocity between the objects will be created 
 
 	// Use this for initialization
 	void Start () {

@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
 	// Variables conected to external game objects 
 	public GameObject game;
 	public GameObject enemyGenerator; // Creates the enemies from a prefab 
-	public AudioClip jumpClip;
+	public AudioClip jumpClip; // Each clip is for a specific sound 
 	public AudioClip dieClip;
 	public AudioClip pointClip;
 	public ParticleSystem dust; // This particle is the dust of the ground 
