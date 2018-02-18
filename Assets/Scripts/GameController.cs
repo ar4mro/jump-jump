@@ -14,8 +14,10 @@ public class GameController : MonoBehaviour {
 	public RawImage platform; 
 	public GameObject uiMenu; 
 	public GameObject uiScore;
+	public GameObject uiFinal;
 	public Text pointsText; 
 	public Text maxScore;
+	public Text scoreResult; 
 
 	// GAME STATES
 	public enum GameState {Idle, Playing, Ended, Ready};
@@ -44,7 +46,7 @@ public class GameController : MonoBehaviour {
 	void Update () {
 
 		// Checks for user input 
-		bool userAction = Input.GetKeyDown("up") || Input.GetMouseButtonDown(0) ;
+		bool userAction = Input.GetKeyDown("space") || Input.GetMouseButtonDown(0) ;
 
 		// When the game starts 
 		if (actualGameState == GameState.Idle && userAction) {
@@ -65,6 +67,9 @@ public class GameController : MonoBehaviour {
 		} else if (actualGameState == GameState.Playing) {
 			Parallax();
 		} else if (actualGameState == GameState.Ready) {
+			uiScore.SetActive(false);
+			uiFinal.SetActive(true);
+			scoreResult.text = "Your Score: " + points.ToString();
 			if (userAction) {
 				RestartGame();
 			}

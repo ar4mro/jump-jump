@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 		// This 3 conditions should be meet before a jump 
 		isGrounded = this.transform.position.y == initialY;
 		gamePlaying = game.GetComponent<GameController>().actualGameState == GameController.GameState.Playing;
-		userAction = (Input.GetKeyDown ("up") || Input.GetMouseButtonDown (0));
+		userAction = (Input.GetKeyDown ("space") || Input.GetMouseButtonDown (0));
 
 		if (isGrounded && gamePlaying && userAction) {
 			UpdateState("PlayerJump");
