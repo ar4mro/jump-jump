@@ -11,7 +11,7 @@ A Unity 2D game that implements the basic concepts on this engine
 
 
 <p align="center">
-  <img src="https://github.com/alv2r/jump-jump/blob/master/Assets/Backgrounds/ProjectScreenshot.png" alt="Game Screenshot"/>
+  <img src="https://github.com/alv2r/jump-jump/blob/master/Assets/Backgrounds/GameInAction.gif" alt="Game Screenshot"/>
 </p>
 
 
