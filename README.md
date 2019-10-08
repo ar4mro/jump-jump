@@ -14,7 +14,4 @@ A Unity 2D game that implements the basic concepts on this engine
   <img src="https://github.com/alv2r/jump-jump/blob/master/Assets/Backgrounds/GameInAction.gif" alt="Game Screenshot"/>
 </p>
 
-
-The base implementation of this game was made following Hector Costa [tutorials](https://www.youtube.com/user/Servorius).
-
 ---
